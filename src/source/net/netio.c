@@ -24,7 +24,6 @@
 #include "azure_c_shared_utility/xlogging.h"
 #include "mbedtls/ctr_drbg.h"
 #include "mbedtls/entropy.h"
-#include "mbedtls/net.h"
 #include "mbedtls/net_sockets.h"
 
 /* Public headers */
@@ -108,7 +107,7 @@ static int prvInitConfig(NetIo_t *pxNet, const char *pcHost, const char *pcRootC
             {
                 if ((retVal = mbedtls_x509_crt_parse(pxNet->pRootCA, (void *)pcRootCA, strlen(pcRootCA) + 1)) != 0 ||
                     (retVal = mbedtls_x509_crt_parse(pxNet->pCert, (void *)pcCert, strlen(pcCert) + 1)) != 0 ||
-                    (retVal = mbedtls_pk_parse_key(pxNet->pPrivKey, (void *)pcPrivKey, strlen(pcPrivKey) + 1, NULL, 0)) != 0)
+                    (retVal = mbedtls_pk_parse_key(pxNet->pPrivKey, (void *)pcPrivKey, strlen(pcPrivKey) + 1, NULL, 0,mbedtls_ctr_drbg_random, &(pxNet->xCtrDrbg))) != 0)
                 {
                     res = KVS_GENERATE_MBEDTLS_ERROR(retVal);
                     LogError("Failed to parse x509 (err:-%X)", -res);
