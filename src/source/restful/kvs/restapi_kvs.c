@@ -327,7 +327,7 @@ static int prvGetEpochTimestampInStr(uint64_t uProducerStartTimestampMs, STRING_
     STRING_HANDLE xStProducerStartTimestamp = NULL;
 
     uProducerStartTimestamp = (uProducerStartTimestampMs == 0) ? getEpochTimestampInMs() : uProducerStartTimestampMs;
-    xStProducerStartTimestamp = STRING_construct_sprintf("%." PRIu64 ".%03d", uProducerStartTimestamp / 1000, uProducerStartTimestamp % 1000);
+    xStProducerStartTimestamp = STRING_construct_sprintf("%lu.%03d", uProducerStartTimestamp / 1000, uProducerStartTimestamp % 1000);
 
     if (xStProducerStartTimestamp == NULL)
     {

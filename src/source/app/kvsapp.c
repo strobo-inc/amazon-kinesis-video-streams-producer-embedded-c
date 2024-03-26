@@ -508,6 +508,7 @@ static int updateAndVerifyRestfulReqParameters(KvsApp_t *pKvs)
 
         pKvs->xPutMediaPara.pcStreamName = pKvs->pStreamName;
         pKvs->xPutMediaPara.xTimecodeType = TIMECODE_TYPE_ABSOLUTE;
+        pKvs->xPutMediaPara.uProducerStartTimestampMs = 0;
         pKvs->xPutMediaPara.uRecvTimeoutMs = DEFAULT_PUT_MEDIA_RECV_TIMEOUT_MS;
         pKvs->xPutMediaPara.uSendTimeoutMs = DEFAULT_PUT_MEDIA_SEND_TIMEOUT_MS;
     }
